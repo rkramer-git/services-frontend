@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RECAPTCHA_SETTINGS, RecaptchaSettings } from "ng-recaptcha";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,7 +23,12 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: { siteKey: "6Lc78R0hAAAAAJmXUo_yEiqyvWUcL0CVfsWp4bEL" } as RecaptchaSettings,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
