@@ -1,6 +1,8 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>    
-    <h3>{{authService.email()}}</h3>    
+    <h6>{{authService.tokenExp()|date:'medium'}}</h6>
+    <span class="separador"></span>      
+    <h3>{{authService.email()}}</h3>
     <span class="separador"></span>
     <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
     <mat-menu #menu="matMenu">

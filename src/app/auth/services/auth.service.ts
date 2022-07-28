@@ -67,16 +67,19 @@ export class AuthService {
     return this.jwt.decodeToken(email).sub
   }
 
- /*  tokenExpired(): boolean{
-    
-      const token = this.recuperarToken()
-  
-      if (token == null) {
-        return false
-      }
-  
-      return this.jwt.isTokenExpired(token)
-    } */
+  tokenExp(): Date | null {
+
+    const token = this.recuperarToken()
+
+    if (token == null){
+      return null
+    }
+
+    const newdate = (this.jwt.getTokenExpirationDate(token))
+
+    return newdate
+
+  }
 
 }
 
