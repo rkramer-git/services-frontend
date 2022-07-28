@@ -20,58 +20,41 @@ export class FuncionarioService {
   ) { }
 
   getFuncionarios(): Observable<Funcionario[]> {
-    const token = this.authService.recuperarToken()
-
-    // Bearer token
-    return this.http.get<Funcionario[]>(this.baseUrl, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+    return this.http.get<Funcionario[]>(this.baseUrl)
   }
 
   // http://localhost:3000/funcionarios/
   deleteFuncionario(func: Funcionario): Observable<any> {
-    const token = this.authService.recuperarToken()
+    //se não tiver foto, apenas será deletado o email  e nome
+    if (func.foto!=null && func.foto.length>0){
 
-    // se não tiver foto, apenas será deletado o email e nome
-    if (func.foto.length > 0) {
-      //1° pegar a referência da imagem no fireStorage
-      /**
-       * refFromURL() pega referência do arquivo do storage pelo link de acesso gerado
-       * pelo firebase
-       */
-      return this.storage.refFromURL(func.foto).delete()
-      .pipe(
-        mergeMap(() => {
-          /**
-           * mergeMap tem a função de pegar dois ou mais observables e transformar todos
-           * em um só
-           */
-          return this.http.delete<any>(`${this.baseUrl}/${func.idFuncionario}`, {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          })
+      //refFrom() pega referência do arquivo do storage pelo link de acesso gerado pelo firebase
+      this.storage.refFromURL(func.foto).delete().pipe( //1º pegar a referência da imagem no fireStorage
+
+        mergeMap(()=> {  //mergeMap() pega dois ou mais observables e transforma todos em um só
+          
+          return this.http.delete<any>(`${this.baseUrl}/${func.idFuncionario}`)
+
+        }),
+        tap((funcionario)=>{
+
+          this.atualizarFuncionariosSub$.next(true)
+
         })
       )
     }
+    return this.http.delete<any>(`${this.baseUrl}/${func.idFuncionario}`).pipe(
 
-    return this.http.delete<any>(`${this.baseUrl}/${func.idFuncionario}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+      tap((funcionario)=>{
+
+        this.atualizarFuncionariosSub$.next(true)
+
+      })
+    )
   }
 
   getFuncionarioById(id: number): Observable<Funcionario> {
-    const token = this.authService.recuperarToken()
-
-    return this.http.get<Funcionario>(`${this.baseUrl}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+    return this.http.get<Funcionario>(`${this.baseUrl}/${id}`)
   }
 
   /**

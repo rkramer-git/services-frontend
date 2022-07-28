@@ -130,7 +130,7 @@ export class FuncionarioComponent implements OnInit {
           resultado
           .subscribe(
             (func) => {
-              this.snackbar.open('Funcionário salvo com sucesso', 'Ok', {
+              this.snackbar.open('Funcionário atualizado com sucesso', 'Ok', {
                 duration: 3000
               })
 
@@ -139,7 +139,7 @@ export class FuncionarioComponent implements OnInit {
           )
         }
 
-        this.snackbar.open('Funcionário salvo com sucesso', 'Ok', {
+        this.snackbar.open('Funcionário atualizado com sucesso', 'Ok', {
           duration: 3000
         })
 

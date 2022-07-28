@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Funcionario } from '../../models/funcionario';
 import { FuncionarioService } from '../../services/funcionario.service';
+import { ConfirmarSaidaCadastroComponent } from '../confirmar-saida-cadastro/confirmar-saida-cadastro.component';
 
 @Component({
   selector: 'app-form-funcionario',
@@ -27,7 +28,8 @@ export class FormFuncionarioComponent implements OnInit {
     private fb: FormBuilder,
     private funcService: FuncionarioService,
     private dialogRef: MatDialogRef<FormFuncionarioComponent>, // objeto que permite controlar o dialog aberto
-    private snackbar: MatSnackBar // com esse objeto será criado um snackbar na tela
+    private snackbar: MatSnackBar, // com esse objeto será criado um snackbar na tela
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -51,15 +53,15 @@ export class FormFuncionarioComponent implements OnInit {
   salvar(): void {
     this.salvandoFuncionario = true
     const f: Funcionario = this.formFuncionario.value
-    let obsSalvar: Observable<any>
+    let obsSalvar$: Observable<any>
 
     if (this.formFuncionario.value.foto.length > 0) {
-      obsSalvar = this.funcService.salvarFuncionario(f, this.foto)
+      obsSalvar$ = this.funcService.salvarFuncionario(f, this.foto)
     } else {
-      obsSalvar = this.funcService.salvarFuncionario(f)
+      obsSalvar$ = this.funcService.salvarFuncionario(f)
     }
 
-    obsSalvar.subscribe(
+    obsSalvar$.subscribe(
       (resultado) => {
         // 1° testar se o resultado é uma Promise ou não
         if (resultado instanceof Promise) {
@@ -102,4 +104,16 @@ export class FormFuncionarioComponent implements OnInit {
       }
     )
   }
+
+  confirmarSaida(){
+    const dialog = this.dialog.open(ConfirmarSaidaCadastroComponent)
+    dialog.afterClosed().subscribe(
+      (boolean)=>{
+        if (boolean){
+        this.dialog.closeAll()
+        }
+      }
+    )
+  }
+
 }
