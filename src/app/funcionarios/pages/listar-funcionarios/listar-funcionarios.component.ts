@@ -106,7 +106,7 @@ export class ListarFuncionariosComponent implements OnInit {
   abrirFormFuncionario(): void {
     // abrindo o formulário do funcionário
     // e recuperando a referência desse dialog e guardando na variável
-    const referenciaDialog = this.dialog.open(FormFuncionarioComponent)
+    const referenciaDialog = this.dialog.open(FormFuncionarioComponent, {disableClose:true})
 
     /**
      * a função afterClosed() nos retorna um observable
@@ -115,6 +115,7 @@ export class ListarFuncionariosComponent implements OnInit {
      * quando o dialog for fechado, chamaremos a função que
      * faz a requisição dos funcionários novamente.
      */
+
     referenciaDialog.afterClosed().subscribe(
       () => {
         this.recuperarFuncionarios()

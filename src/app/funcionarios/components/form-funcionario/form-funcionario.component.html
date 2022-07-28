@@ -1,6 +1,7 @@
 <div>
   <h2 mat-dialog-title>Novo Funcionário</h2>
   <mat-spinner color="accent" mode="indeterminate" diameter="20" *ngIf="salvandoFuncionario"></mat-spinner>
+  <button mat-icon-button color="accent" (click)="confirmarSaida()" matTooltip="Voltar para a lista de funcionários" aria-label="Botão de voltar para a página anterior"><mat-icon>arrow_back</mat-icon></button>
 </div>
 <section mat-dialog-content>
   <form action="" [formGroup]="formFuncionario" (ngSubmit)="salvar()">
