@@ -55,4 +55,28 @@ export class AuthService {
 
     return !this.jwt.isTokenExpired(token) // testando a validade do token
   }
+
+  email(): boolean{
+
+    const email = this.recuperarToken()
+
+    if (email == null){
+      return false
+    }
+
+    return this.jwt.decodeToken(email).sub
+  }
+
+ /*  tokenExpired(): boolean{
+    
+      const token = this.recuperarToken()
+  
+      if (token == null) {
+        return false
+      }
+  
+      return this.jwt.isTokenExpired(token)
+    } */
+
 }
+
