@@ -9,6 +9,7 @@ import { ClienteComponent } from './pages/cliente/cliente.component';
 import { NavbarModule } from '../components/navbar/navbar.module';
 import { ConfirmarDelecaoClienteComponent } from './components/confirmar-delecao-cliente/confirmar-delecao-cliente.component';
 import { FormClienteComponent } from './components/form-cliente/form-cliente.component';
+import { ConfirmarSaidaCadastroComponent } from './components/confirmar-saida-cadastro/confirmar-saida-cadastro.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormClienteComponent } from './components/form-cliente/form-cliente.com
     ClienteComponent,
     ListarClientesComponent,
     ConfirmarDelecaoClienteComponent,
-    FormClienteComponent
+    FormClienteComponent,
+    ConfirmarSaidaCadastroComponent
   ],
   imports: [
     CommonModule,
