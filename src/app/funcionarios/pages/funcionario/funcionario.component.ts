@@ -128,6 +128,7 @@ export class FuncionarioComponent implements OnInit {
               })
 
               this.recuperarFuncionario(func.id)
+              
             }
           )
         }

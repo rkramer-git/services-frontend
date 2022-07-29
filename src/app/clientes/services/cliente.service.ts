@@ -29,11 +29,11 @@ export class ClienteService {
     );
   }
 
-  salvarCliente(client: Cliente) {
+  postCliente(client: Cliente) {
     return this.http.post<Cliente>(this.baseUrl, client);
   }
 
-  atualizarCliente(client: Cliente) {
+  putCliente(client: Cliente):Observable<Cliente> {
     return this.http.put<Cliente>(`${this.baseUrl}/${client.idCliente}`, client).pipe(
       tap((client) => {
         this.atualizarClienteSub$.next(true);

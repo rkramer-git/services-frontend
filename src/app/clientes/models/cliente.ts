@@ -2,8 +2,8 @@ import { EnderecoCliente } from "../enderecoClientes/models/endereco-cliente";
 
 
 export interface Cliente {
-  idCliente?: number;
+  idCliente: number;
   nome: string;
   email: string;
-   endereco?: EnderecoCliente; 
+  endereco?: EnderecoCliente; 
 }

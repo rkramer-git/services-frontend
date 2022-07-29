@@ -48,15 +48,19 @@ export class ListarClientesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((sucesso) => {
       if (sucesso) {
-        this.clienteService.deleteCliente(client).subscribe(() => {
-          this.snackbar.open('Cliente deletado', 'Ok', {
-            duration: 3000,
-          });
-          this.recuperarClientes;
-        },
-        (error) => {
-          
-        }
+        this.clienteService.deleteCliente(client).subscribe(
+          () => {
+            this.snackbar.open('Cliente deletado', 'Ok', {
+              duration: 3000,
+            });
+            this.recuperarClientes;
+          },
+          (error) => {
+            this.snackbar.open('Não foi possível deletar o cliente', 'Ok', {
+              duration: 3000,
+            });
+            console.log(error);
+          }
         );
       }
     });

@@ -1,5 +1,5 @@
 <div class="loader" *ngIf="cliente == undefined; else principal">
-    <p>{{ naoEncontrado == true ? 'Cargo não encontrado' : 'Procurando cargo...' }}</p>
+    <p>{{ naoEncontrado == true ? 'Cliente não encontrado' : 'Procurando cliente...' }}</p>
     <mat-spinner mode="indeterminate" color="primary" *ngIf="naoEncontrado == false"></mat-spinner>
   </div>
   <ng-template #principal>
@@ -16,14 +16,14 @@
             <mat-icon>arrow_back</mat-icon>
             Voltar
           </button>
-          <button mat-menu-item >
+          <button mat-menu-item (click)="deletar()">
             <mat-icon>delete</mat-icon>
-            Deletar cargo
+            Deletar cliente
           </button>
         </mat-menu>
       </mat-card-header>
       <mat-card-content>
-        <form action="" [formGroup]="formCliente">
+        <form action="" [formGroup]="formCliente" (ngSubmit)="salvarAtualizacoes()">
   
           <mat-form-field appearance="fill">
             <mat-label>Nome</mat-label>
