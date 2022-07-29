@@ -6,48 +6,43 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { Cargo } from '../models/cargo';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CargoService {
-
-  private readonly baseUrl: string = 'http://localhost:8080/servicos/cargos'
-  atualizarCargoSub$: BehaviorSubject<boolean> = new BehaviorSubject(true)
+  private readonly baseUrl: string = 'http://localhost:8080/servicos/cargos';
+  atualizarCargoSub$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(
     private authService: AuthService,
     private http: HttpClient,
     private storage: AngularFireStorage
-  ) { }
+  ) {}
 
-  getCargos(): Observable<Cargo[]>{
-    return this.http.get<Cargo[]>(this.baseUrl)
+  getCargos(): Observable<Cargo[]> {
+    return this.http.get<Cargo[]>(this.baseUrl);
   }
 
-  getCargoById(id:number):Observable<Cargo>{
-    return this.http.get<Cargo>(`${this.baseUrl}/${id}`)
+  getCargoById(id: number): Observable<Cargo> {
+    return this.http.get<Cargo>(`${this.baseUrl}/${id}`);
   }
 
-  deleteCargo(carg: Cargo):Observable<any>{
+  deleteCargo(carg: Cargo): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/${carg.idCargo}`).pipe(
-      tap((cargo)=>{
-        this.atualizarCargoSub$.next(true)
+      tap((cargo) => {
+        this.atualizarCargoSub$.next(true);
       })
-    )
+    );
+  }
+  
+  salvarCargo(carg: Cargo) {
+    return this.http.post<Cargo>(this.baseUrl, carg);
   }
 
-  salvarCargo(carg: Cargo){
-    return this.http.post<Cargo>(this.baseUrl, carg)
-  }
-
-  atualizarCargo(carg:Cargo){
+  atualizarCargo(carg: Cargo) {
     return this.http.put<Cargo>(`${this.baseUrl}/${carg.idCargo}`, carg).pipe(
-      tap(
-        (cargo)=>{
-          this.atualizarCargoSub$.next(true)
-        }
-      )
-    )
+      tap((cargo) => {
+        this.atualizarCargoSub$.next(true);
+      })
+    );
   }
-
-
 }
