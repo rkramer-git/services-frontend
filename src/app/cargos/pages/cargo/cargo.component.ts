@@ -57,7 +57,8 @@ export class CargoComponent implements OnInit {
           salario:this.cargo.salario
         })
         this.valorMudou()
-      },
+      }
+      ,
       (erro: HttpErrorResponse)=>{
         this.naoEncontrado = erro.status ==404
       }
