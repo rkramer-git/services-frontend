@@ -33,7 +33,16 @@
 
         <mat-form-field appearance="fill">
           <mat-label>E-mail</mat-label>
-          <input type="text" matInput placeholder="E-mail" formControlName="email">
+          <input type="email" matInput placeholder="E-mail" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Cargo</mat-label>
+          <mat-select formControlName="cargo" name="cargo">
+            <mat-option *ngFor = "let cargo of cargos" [value]="cargo.idCargo">
+            {{cargo.nome}}
+          </mat-option>
+        </mat-select>
         </mat-form-field>
 
         <input type="file" id="input-foto" #inputFoto (change)="recuperarFoto($event)" formControlName="foto">

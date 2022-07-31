@@ -64,26 +64,13 @@ export class FuncionarioService {
   /**
    * O ? na frente do parâmetro faz com que ele seja opcional na hora de executar a função
    */
-  salvarFuncionario(func: Funcionario, foto?: File) {
-    /**
-     * fazendo requisição POST para salvar os dados do funcionário
-     * return funcionário que acabou de ser salvo
-     */
-
-    /**
-     * a função pipe é utilizada para colocar os operadores do RXJS
-     * que manipularão os dados que são retornados dos observables
-     */
-
-    /**
-     * o pipe map manipula cada dado que o observable te retorna,
-     * transformando em algo diferente e te retorna esse dado modificado
-     */
+  salvarFuncionario(func: Funcionario,idCargo:number, foto?: File) {
+   
     if (foto == undefined) { // se a foto não existe, será retornado um observable que apenas salva os dados básicos
-      return this.http.post<Funcionario>(this.baseUrl, func)
+      return this.http.post<Funcionario>(`${this.baseUrl}/${idCargo}`, func)
     }
 
-    return this.http.post<Funcionario>(this.baseUrl, func)
+    return this.http.post<Funcionario>(`${this.baseUrl}/${idCargo}`, func)
     .pipe(
       map(async (func) => {
         // 1° Fazer upload da imagem e recuperar o link gerado

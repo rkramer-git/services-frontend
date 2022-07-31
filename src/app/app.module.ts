@@ -11,12 +11,16 @@ import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { ConfirmarLogoutComponent } from './components/confirmar-logout/confirmar-logout.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ListarClientesComponent } from './clientes/pages/listar-clientes/listar-clientes.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConfirmarLogoutComponent
+    ConfirmarLogoutComponent,
+  
+    
   ],
   imports: [
     BrowserModule,

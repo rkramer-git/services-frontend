@@ -12,20 +12,19 @@ import { CargoService } from '../../services/cargo.service';
 @Component({
   selector: 'app-cargo',
   templateUrl: './cargo.component.html',
-  styleUrls: ['./cargo.component.css']
+  styleUrls: ['./cargo.component.css'],
 })
 export class CargoComponent implements OnInit {
-
-  cargo!: Cargo
+  cargo!: Cargo;
 
   formCargo: FormGroup = this.fb.group({
-    nome:['',[Validators.required]],
-    descricao:['',[Validators.required]],
-    salario:['',[Validators.required]]
-  })
+    nome: ['', [Validators.required]],
+    descricao: ['', [Validators.required]],
+    salario: ['', [Validators.required]],
+  });
 
-  desabilitar: boolean = true
-  naoEncontrado: boolean = false
+  desabilitar: boolean = true;
+  naoEncontrado: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,91 +33,71 @@ export class CargoComponent implements OnInit {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private router: Router
-
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(
-      (params)=>{
-        let idCargo = parseInt(params.get('idCargo')??'0')
-        this.recuperarCargo(idCargo)
-      }
-    )
+    this.route.paramMap.subscribe((params) => {
+      let idCargo = parseInt(params.get('idCargo') ?? '0');
+      this.recuperarCargo(idCargo);
+    });
   }
 
-  recuperarCargo(id:number):void{
+  recuperarCargo(id: number): void {
     this.cargoService.getCargoById(id).subscribe(
-      (carg)=>{
-        this.cargo = carg
+      (carg) => {
+        this.cargo = carg;
 
         this.formCargo.setValue({
-          nome:this.cargo.nome,
-          descricao:this.cargo.descricao,
-          salario:this.cargo.salario
-        })
-        this.valorMudou()
+          nome: this.cargo.nome,
+          descricao: this.cargo.descricao,
+          salario: this.cargo.salario,
+        });
+        this.valorMudou();
       },
-      (erro: HttpErrorResponse)=>{
-        this.naoEncontrado = erro.status ==404
+      (erro: HttpErrorResponse) => {
+        this.naoEncontrado = erro.status == 404;
       }
-    )
+    );
   }
 
-  valorMudou(){
-    this.formCargo.valueChanges.subscribe(
-      (valores)=>{
-        this.desabilitar = this.formCargo.invalid || !(valores.nome != this.cargo.nome || valores.descricao != this.cargo.descricao || valores.salario != this.cargo.salario)
-      }
-    )
+  valorMudou() {
+    this.formCargo.valueChanges.subscribe((valores) => {
+      this.desabilitar =
+        this.formCargo.invalid ||
+        !(
+          valores.nome != this.cargo.nome ||
+          valores.descricao != this.cargo.descricao ||
+          valores.salario != this.cargo.salario
+        );
+    });
   }
 
-  salvarAtualizacoes(){
-    const c : Cargo = {...this.formCargo.value}
-    c.idCargo = this.cargo.idCargo
+  salvarAtualizacoes() {
+    const c: Cargo = { ...this.formCargo.value };
+    c.idCargo = this.cargo.idCargo;
 
-    const obsSalvar:Observable<any> = this.cargoService.atualizarCargo(c)
-
-    obsSalvar.subscribe(
-      (resultado)=>{
-        if (resultado instanceof Observable<Cargo>){
-          resultado.subscribe(
-            (carg)=>{
-              this.snackBar.open('Cargo atualizado com sucesso', 'Ok', {
-                duration: 3000
-              })
-
-              this.recuperarCargo(carg.id)
-            }
-          )
-        }
-        this.snackBar.open('Cargo atualizado com sucesso', 'Ok', {
-          duration: 3000
-        })
-
-        this.recuperarCargo(resultado.id)
-      }
-    )
+    this.cargoService.atualizarCargo(c).subscribe((carg) => {
+      this.snackBar.open('Cargo atualizado com sucesso', 'Ok', {
+        duration: 3000,
+      });
+      this.recuperarCargo(carg.idCargo!);
+    });
   }
 
   deletar(): void {
-    this.dialog.open(ConfirmarDelecaoCargoComponent)
-    .afterClosed()
-    .subscribe(
-      (deletar) => {
+    this.dialog
+      .open(ConfirmarDelecaoCargoComponent)
+      .afterClosed()
+      .subscribe((deletar) => {
         if (deletar) {
-          this.cargoService.deleteCargo(this.cargo)
-          .subscribe(
-            () => {
-              this.snackBar.open('Cargo deletado', 'Ok', {
-                duration: 3000
-              })
+          this.cargoService.deleteCargo(this.cargo).subscribe(() => {
+            this.snackBar.open('Cargo deletado', 'Ok', {
+              duration: 3000,
+            });
 
-              this.router.navigateByUrl('/cargos')
-            }
-          )
+            this.router.navigateByUrl('/cargos');
+          });
         }
-      }
-    )
+      });
   }
-
 }
