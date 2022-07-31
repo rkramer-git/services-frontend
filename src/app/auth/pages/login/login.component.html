@@ -1,9 +1,10 @@
 <section class="grid-container">
-  <div class="image-container"></div>
+
+  <div class="image-container">
+
   <main class="form-container">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <h1>Log in</h1>
-      <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline">
         <mat-label>E-mail</mat-label>
         <input
           type="text"
@@ -33,4 +34,5 @@
       </button>
     </form>
   </main>
+</div>
 </section>

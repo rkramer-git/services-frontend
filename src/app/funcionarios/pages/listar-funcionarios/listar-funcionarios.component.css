@@ -2,10 +2,11 @@
   min-height: calc(100vh - 64px);
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 1px 1fr;
+  background-color: black;
 }
 
-#lateral {
+/* #lateral {
   background: #3f51b5;
   display: flex;
   flex-direction: column;
@@ -13,11 +14,11 @@
 }
 
 #lateral h2 {
-  color: white;
+  
   text-align: center;
   font-weight: 500;
   transform: rotate(-90deg);
-}
+} */
 
 main {
   display: grid;
