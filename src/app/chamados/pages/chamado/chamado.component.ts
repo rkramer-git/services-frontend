@@ -26,9 +26,7 @@ export class ChamadoComponent implements OnInit {
     descricao: [''],
     status: ['', [Validators.required]],
     funcionario: [''],
-    statusPagamento:[''],
-    valor:[''],
-    formPagamento:['']
+    
   })
 
   desabilitar: boolean = true
@@ -72,9 +70,7 @@ export class ChamadoComponent implements OnInit {
           descricao: this.chamado.descricao,
           status: this.chamado.status,
           funcionario: this.chamado.funcionario?.idFuncionario??null,
-          statusPagamento:this.chamado.pagamento?.status??'',
-          valor:this.chamado.pagamento?.valor??null,
-          formPagamento:this.chamado.pagamento?.formPagamento??''
+          
         })
         this.valorMudou()
       },

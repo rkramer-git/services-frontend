@@ -59,7 +59,7 @@ export class PostEnderecoComponent implements OnInit {
         horizontalPosition: 'center',
         verticalPosition: 'bottom',
       });
-      this.dialogRef.close();
+      this.dialogRef.afterClosed();
     });
   }
 

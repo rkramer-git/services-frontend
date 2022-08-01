@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
+import { async } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   MatDialog,
@@ -8,9 +9,10 @@ import {
 } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, timeout } from 'rxjs';
 import { ConfirmarSaidaCadastroComponent } from 'src/app/clientes/components/confirmar-saida-cadastro/confirmar-saida-cadastro.component';
 import { Cliente } from 'src/app/clientes/models/cliente';
+import { ClienteComponent } from 'src/app/clientes/pages/cliente/cliente.component';
 import { ClienteService } from 'src/app/clientes/services/cliente.service';
 import { EnderecoCliente } from '../../models/endereco-cliente';
 import { EnderecoService } from '../../services/endereco.service';
@@ -23,7 +25,7 @@ import { PostEnderecoComponent } from '../post-endereco/post-endereco.component'
 })
 export class PutEnderecoComponent implements OnInit {
   endereco!: EnderecoCliente;
-  cliente!:Cliente;
+  cliente!: Cliente;
   salvandoEndereco: boolean = false;
   desabilitar: boolean = true;
   naoEncontrado: boolean = false;
@@ -36,8 +38,10 @@ export class PutEnderecoComponent implements OnInit {
   });
 
   constructor(
+   
     private fb: FormBuilder,
     private enderecoService: EnderecoService,
+    private dialogRef: MatDialogRef<PutEnderecoComponent>,
     private snackbar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA)
     public data: any
@@ -63,11 +67,7 @@ export class PutEnderecoComponent implements OnInit {
       (erro: HttpErrorResponse) => {
         this.naoEncontrado = erro.status == 404;
       }
-    ); 
-     
- 
-    
-    
+    );
   }
 
   valorMudou() {
@@ -93,7 +93,9 @@ export class PutEnderecoComponent implements OnInit {
       this.snackbar.open('Endereco atualizado com sucesso', 'Ok', {
         duration: 3000,
       });
+      this.dialogRef.close();
       this.recuperarEndereco();
+      
     });
   }
 }

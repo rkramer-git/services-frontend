@@ -14,7 +14,7 @@
 
       <mat-menu #menu="matMenu">
         <button mat-menu-item routerLink="/chamados">
-          <mat-icon>arrow_back</mat-icon>
+          <mat-icon>keyboard_arrow_right</mat-icon>
           Voltar
         </button>
 
@@ -60,22 +60,7 @@
         <button type="submit" mat-raised-button color="accent" id="salvar" [disabled]="desabilitar">Salvar
           atualizações</button>
         
-          <mat-card-subtitle><h2>Pagamento</h2></mat-card-subtitle> 
-
-          <mat-form-field appearance="fill">
-            <mat-label>Status do Pagamento</mat-label>
-            <input type="text" matInput placeholder="Status Pagamento" formControlName="statusPagamento" readonly>
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Valor</mat-label>
-            <input type="number" matInput placeholder="Valor" formControlName="valor" readonly>
-            <span matPrefix>R$&nbsp;</span>
-            <span matSuffix>,00</span>
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Forma de Pagamento</mat-label>
-            <input type="text" matInput placeholder="Forma de Pagamento" formControlName="formPagamento" readonly>
-          </mat-form-field>
+          
       </form>
     </mat-card-content>
   </mat-card>
