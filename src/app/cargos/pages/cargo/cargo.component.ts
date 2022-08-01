@@ -76,9 +76,9 @@ export class CargoComponent implements OnInit {
     const c: Cargo = { ...this.formCargo.value };
     c.idCargo = this.cargo.idCargo;
 
-    this.cargoService.atualizarCargo(c).subscribe((carg) => {
+    this.cargoService.putCargo(c).subscribe((carg:any) => {
       this.snackBar.open('Cargo atualizado com sucesso', 'Ok', {
-        duration: 3000,
+        duration: 3000
       });
       this.recuperarCargo(carg.idCargo!);
     });
