@@ -10,6 +10,8 @@ import { NavbarModule } from '../components/navbar/navbar.module';
 import { ConfirmarDelecaoClienteComponent } from './components/confirmar-delecao-cliente/confirmar-delecao-cliente.component';
 import { FormClienteComponent } from './components/form-cliente/form-cliente.component';
 import { ConfirmarSaidaCadastroComponent } from './components/confirmar-saida-cadastro/confirmar-saida-cadastro.component';
+import { PostEnderecoComponent } from './enderecoClientes/components/post-endereco/post-endereco.component';
+import { PutEnderecoComponent } from './enderecoClientes/components/put-endereco/put-endereco.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { ConfirmarSaidaCadastroComponent } from './components/confirmar-saida-ca
     ListarClientesComponent,
     ConfirmarDelecaoClienteComponent,
     FormClienteComponent,
-    ConfirmarSaidaCadastroComponent
+    ConfirmarSaidaCadastroComponent,
+    PostEnderecoComponent,
+    PutEnderecoComponent
   ],
   imports: [
     CommonModule,

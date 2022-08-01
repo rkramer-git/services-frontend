@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { PostEnderecoComponent } from '../../enderecoClientes/components/post-endereco/post-endereco.component';
 import { Cliente } from '../../models/cliente';
 import { ClienteService } from '../../services/cliente.service';
 import { ConfirmarSaidaCadastroComponent } from '../confirmar-saida-cadastro/confirmar-saida-cadastro.component';
@@ -60,4 +61,13 @@ export class FormClienteComponent implements OnInit {
       }
     )
   }
+  postEndereco(idCliente: number): void {
+    console.log(idCliente);
+
+    const dialogRef = this.dialog.open(PostEnderecoComponent, {
+      disableClose: true,
+      data:idCliente
+    });
+  }
+  
 }
