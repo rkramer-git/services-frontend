@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmarDelecaoClienteComponent } from '../../components/confirmar-delecao-cliente/confirmar-delecao-cliente.component';
@@ -8,6 +8,7 @@ import { PutEnderecoComponent } from '../../enderecoClientes/components/put-ende
 import { EnderecoCliente } from '../../enderecoClientes/models/endereco-cliente';
 import { Cliente } from '../../models/cliente';
 import { ClienteService } from '../../services/cliente.service';
+import { ClienteComponent } from '../cliente/cliente.component';
 
 @Component({
   selector: 'app-listar-clientes',
@@ -18,10 +19,13 @@ export class ListarClientesComponent implements OnInit {
   clientes: Cliente[] = [];
   colunas: Array<String> = ['id', 'nome', 'email', 'endereco', 'actions'];
 
+
   constructor(
+    
     private clienteService: ClienteService,
     private dialog: MatDialog,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+   
   ) {}
 
   ngOnInit(): void {
@@ -100,6 +104,9 @@ export class ListarClientesComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe((sucess) => {
       this.recuperarClientes();
+      
+      
+
     });
   }
 }

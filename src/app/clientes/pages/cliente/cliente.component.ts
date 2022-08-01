@@ -23,10 +23,7 @@ export class ClienteComponent implements OnInit {
   formCliente: FormGroup = this.fb.group({
     nome: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    rua: [''],
-    bairro: [''],
-    cidade: [''],
-    uf: [''],
+    
   });
 
   desabilitar: boolean = true;
@@ -45,10 +42,15 @@ export class ClienteComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       let idCliente = parseInt(params.get('idCliente') ?? '0');
-      this.recuperarCliente(idCliente);
-      
+      this.recuperarCliente(idCliente);  
+
     });
+
+      
+    
   }
+
+  
 
   recuperarCliente(id: number): void {
     this.clienteService.getClientesById(id).subscribe(
@@ -57,10 +59,7 @@ export class ClienteComponent implements OnInit {
         this.formCliente.setValue({
           nome: this.cliente.nome,
           email: this.cliente.email,
-          rua:this.cliente.enderecoCliente?.rua??'',
-          bairro:this.cliente.enderecoCliente?.bairro??'',
-          cidade:this.cliente.enderecoCliente?.cidade??'',
-          uf:this.cliente.enderecoCliente?.uf??'',
+          
         });
         this.valorMudou();
       },
@@ -81,7 +80,7 @@ export class ClienteComponent implements OnInit {
     });
   }
 
-  salvarAtualizacoes() {
+   salvarAtualizacoes() {
     const cl: Cliente = {
       ...this.formCliente.value,
     };
@@ -92,6 +91,7 @@ export class ClienteComponent implements OnInit {
         duration: 3000,
       });
       this.recuperarCliente(resultado.idCliente);
+      
     });
   }
 

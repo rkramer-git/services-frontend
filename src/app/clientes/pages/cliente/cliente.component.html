@@ -26,7 +26,7 @@
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item routerLink="/clientes">
-          <mat-icon>arrow_back</mat-icon>
+          <mat-icon>keyboard_arrow_right</mat-icon>
           Voltar
         </button>
         <button mat-menu-item (click)="deletar()">
@@ -67,64 +67,6 @@
           />
         </mat-form-field>
 
-        <mat-card-subtitle>
-          <h2>Endereço</h2>
-        </mat-card-subtitle>
-        
-        <mat-form-field appearance="fill">
-          <mat-label
-            >Rua
-            <mat-icon class="mat-icon-formularios">block</mat-icon></mat-label
-          >
-          <input
-            type="text"
-            matInput
-            placeholder="Rua"
-            formControlName="rua"
-            readonly
-          />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label
-            >Bairro
-            <mat-icon class="mat-icon-formularios">block</mat-icon></mat-label
-          >
-          <input
-            type="text"
-            matInput
-            placeholder="Bairro"
-            formControlName="bairro"
-            readonly
-          />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label
-            >Cidade
-            <mat-icon class="mat-icon-formularios">block</mat-icon></mat-label
-          >
-          <input
-            type="text"
-            matInput
-            placeholder="Cidade"
-            formControlName="cidade"
-            readonly
-          />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label
-            >UF
-            <mat-icon class="mat-icon-formularios">block</mat-icon></mat-label
-          >
-          <input
-            type="text"
-            matInput
-            placeholder="UF"
-            formControlName="uf"
-            readonly
-          />
-        </mat-form-field>
         <button
           type="submit"
           mat-raised-button

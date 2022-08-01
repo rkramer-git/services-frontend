@@ -1,7 +1,7 @@
 <div>
     <h2 mat-dialog-title>Novo Endereco</h2>
     <mat-spinner color="accent" mode="indeterminate" diameter="20" *ngIf="salvandoEndereco"></mat-spinner>
-    <button mat-icon-button color="accent" (click)="confirmarSaida()" matTooltip="Voltar para a lista de clientes" aria-label="Botão de voltar para a página anterior"><mat-icon>arrow_back</mat-icon></button>
+    <button mat-icon-button color="accent" (click)="confirmarSaida()" matTooltip="Voltar para a lista de clientes" aria-label="Botão de voltar para a página anterior"><mat-icon>keyboard_arrow_right</mat-icon></button>
   </div>
   <section mat-dialog-content>
     <form action="" [formGroup]="formEndereco" (ngSubmit)="salvar()">
