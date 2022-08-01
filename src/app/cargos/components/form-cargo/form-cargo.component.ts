@@ -38,7 +38,7 @@ export class FormCargoComponent implements OnInit {
     const c: Cargo = this.formCargo.value
     let obsSalvar$: Observable<any>
 
-    obsSalvar$ = this.cargoService.salvarCargo(c)
+    obsSalvar$ = this.cargoService.postCargo(c)
 
     obsSalvar$.subscribe(
       (resultado)=>{

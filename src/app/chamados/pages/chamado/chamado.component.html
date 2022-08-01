@@ -1,0 +1,82 @@
+<div class="loader" *ngIf="chamado == undefined; else principal">
+  <p>{{ naoEncontrado == true ? 'Chamado não encontrado' : 'Procurando chamado...' }}</p>
+  <mat-spinner mode="indeterminate" color="primary" *ngIf="naoEncontrado == false"></mat-spinner>
+</div>
+<ng-template #principal>
+  <mat-card>
+
+    <mat-card-header>
+      
+      <mat-card-title>Chamado {{chamado.idChamado}}:  {{chamado.titulo }}</mat-card-title>
+      <button mat-icon-button color="primary" id="menu" [mat-menu-trigger-for]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/chamados">
+          <mat-icon>arrow_back</mat-icon>
+          Voltar
+        </button>
+
+        <button mat-menu-item (click)="deletar()">
+          <mat-icon>delete</mat-icon>
+          Deletar funcionário
+        </button>
+      </mat-menu>
+
+    </mat-card-header>
+
+    <mat-card-content>
+      <form action="" [formGroup]="formChamado" (ngSubmit)="salvarAtualizacoes()">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Titulo</mat-label>
+          <input type="text" matInput placeholder="Novo titulo" formControlName="titulo">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Descrição</mat-label>
+          <input type="text" matInput placeholder="Descrição" formControlName="descricao">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status" name="status">
+            <mat-option *ngFor="let st of status" [value]="st">
+              {{st}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Funcionário</mat-label>
+          <mat-select formControlName="funcionario" name="funcionario">
+            <mat-option *ngFor="let funcionario of funcionarios" [value]="funcionario.idFuncionario">
+              {{funcionario.nome}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="accent" id="salvar" [disabled]="desabilitar">Salvar
+          atualizações</button>
+        
+          <mat-card-subtitle><h2>Pagamento</h2></mat-card-subtitle> 
+
+          <mat-form-field appearance="fill">
+            <mat-label>Status do Pagamento</mat-label>
+            <input type="text" matInput placeholder="Status Pagamento" formControlName="statusPagamento" readonly>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Valor</mat-label>
+            <input type="number" matInput placeholder="Valor" formControlName="valor" readonly>
+            <span matPrefix>R$&nbsp;</span>
+            <span matSuffix>,00</span>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Forma de Pagamento</mat-label>
+            <input type="text" matInput placeholder="Forma de Pagamento" formControlName="formPagamento" readonly>
+          </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

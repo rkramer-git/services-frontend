@@ -34,15 +34,15 @@ export class CargoService {
     );
   }
   
-  salvarCargo(carg: Cargo) {
+  postCargo(carg: Cargo) {
     return this.http.post<Cargo>(this.baseUrl, carg);
   }
 
-  atualizarCargo(carg: Cargo) {
+  putCargo(carg: Cargo) {
     return this.http.put<Cargo>(`${this.baseUrl}/${carg.idCargo}`, carg).pipe(
       tap((cargo) => {
         this.atualizarCargoSub$.next(true);
       })
-    );
+    )
   }
 }
