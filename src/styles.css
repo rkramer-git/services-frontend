@@ -2,3 +2,9 @@
 
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-icon-formularios{
+    float: right;
+    color: white;
+    font-size: 16px;
+}

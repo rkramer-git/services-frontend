@@ -6,6 +6,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { observable, Observable } from 'rxjs';
 import { ConfirmarDelecaoClienteComponent } from '../../components/confirmar-delecao-cliente/confirmar-delecao-cliente.component';
+import { PostEnderecoComponent } from '../../enderecoClientes/components/post-endereco/post-endereco.component';
+import { PutEnderecoComponent } from '../../enderecoClientes/components/put-endereco/put-endereco.component';
+import { EnderecoCliente } from '../../enderecoClientes/models/endereco-cliente';
 import { Cliente } from '../../models/cliente';
 import { ClienteService } from '../../services/cliente.service';
 
@@ -20,24 +23,30 @@ export class ClienteComponent implements OnInit {
   formCliente: FormGroup = this.fb.group({
     nome: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
+    rua: [''],
+    bairro: [''],
+    cidade: [''],
+    uf: [''],
   });
 
   desabilitar: boolean = true;
   naoEncontrado: boolean = false;
+  
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private clienteService: ClienteService,
-    private snackbar:MatSnackBar,
-    private dialog:MatDialog,
-    private router:Router
+    private snackbar: MatSnackBar,
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       let idCliente = parseInt(params.get('idCliente') ?? '0');
       this.recuperarCliente(idCliente);
+      
     });
   }
 
@@ -48,6 +57,10 @@ export class ClienteComponent implements OnInit {
         this.formCliente.setValue({
           nome: this.cliente.nome,
           email: this.cliente.email,
+          rua:this.cliente.enderecoCliente?.rua??'',
+          bairro:this.cliente.enderecoCliente?.bairro??'',
+          cidade:this.cliente.enderecoCliente?.cidade??'',
+          uf:this.cliente.enderecoCliente?.uf??'',
         });
         this.valorMudou();
       },
@@ -63,48 +76,43 @@ export class ClienteComponent implements OnInit {
         this.formCliente.invalid ||
         !(
           valores.nome != this.cliente.nome ||
-          valores.email != this.cliente.email
+          valores.email != this.cliente.email 
         );
     });
   }
 
   salvarAtualizacoes() {
     const cl: Cliente = {
-      ...this.formCliente.value
+      ...this.formCliente.value,
     };
     cl.idCliente = this.cliente.idCliente;
 
-    this.clienteService.putCliente(cl).subscribe(
-      (resultado) => {
-        console.log(resultado);
-        console.log(resultado.idCliente);
-        
-        
+    this.clienteService.putCliente(cl).subscribe((resultado) => {
       this.snackbar.open('Cliente atualizado com sucesso', 'Ok', {
-        duration: 3000
-      })
+        duration: 3000,
+      });
       this.recuperarCliente(resultado.idCliente);
-    
-    });  
+    });
   }
 
+  deletar(): void {
+    this.dialog
+      .open(ConfirmarDelecaoClienteComponent)
+      .afterClosed()
+      .subscribe((sucesso) => {
+        if (sucesso) {
+          this.clienteService.deleteCliente(this.cliente).subscribe(() => {
+            this.snackbar.open('Cliente deletado', 'Ok', {
+              duration: 3000,
+            });
 
-
-  deletar():void{
-    this.dialog.open(ConfirmarDelecaoClienteComponent).afterClosed().subscribe(
-      (sucesso) => {
-        if(sucesso) {
-          this.clienteService.deleteCliente(this.cliente).subscribe(
-            ()=>{
-              this.snackbar.open('Cliente deletado', 'Ok', {
-                duration: 3000
-              })
-
-              this.router.navigateByUrl('/clientes')
-            }
-          )
+            this.router.navigateByUrl('/clientes');
+          });
         }
-      }
-    )
+      });
   }
+
+
+
+ 
 }

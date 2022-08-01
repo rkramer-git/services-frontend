@@ -42,3 +42,9 @@
     right: 16px;
     bottom: 16px;
   }
+
+  #btnEditarEndereco:hover{
+    color: rgb(37, 214, 238);
+  }
+
+
