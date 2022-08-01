@@ -7,6 +7,8 @@ import { ConfirmarDelecaoComponent } from '../../components/confirmar-delecao/co
 import { FormChamadoComponent } from '../../components/form-chamado/form-chamado.component';
 import { Chamado } from '../../models/chamado';
 import { FormPagamentoComponent } from '../../pagamentos/components/form-pagamento/form-pagamento.component';
+import { PagamentoComponent } from '../../pagamentos/components/pagamento/pagamento.component';
+import { Pagamento } from '../../pagamentos/models/pagamento';
 import { ChamadoService } from '../../services/chamado.service';
 
 @Component({
@@ -100,6 +102,16 @@ export class ListarChamadosComponent implements OnInit {
     referenciaDialog.afterClosed().subscribe(
       ()=>{
         this.recuperarChamados()
+      }
+    )
+  }
+
+  abrirEditarPagamento(pagamento:Pagamento):void{
+    const referenciaDialog = this.dialog.open(PagamentoComponent, {data:pagamento})
+    referenciaDialog.afterClosed().subscribe(
+      ()=>{
+        this.recuperarChamados()
+        this.dialog.closeAll()
       }
     )
   }

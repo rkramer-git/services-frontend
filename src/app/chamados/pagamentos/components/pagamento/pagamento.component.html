@@ -1,30 +1,9 @@
-<!-- <mat-form-field appearance="fill">
-
-    <mat-label>Valor</mat-label>
-    <input type="number" matInput placeholder="Alterar valor'" formControlName="valor">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Forma de Pagamento</mat-label>
-    <input type="text" matInput placeholder="Forma de pagamento" formControlName="formPagamento">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Status do Pagamento</mat-label>
-    <mat-select formControlName="statusPagamento" name="statusPagamento">
-      <mat-option *ngFor="let stP of statusPagamento" [value]="stP">
-        {{stP}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field> -->
-
- <!--  <div>
+  <div>
     <h2 mat-dialog-title>Editar Pagamento</h2>
-    <mat-spinner color="accent" mode="indeterminate" diameter="20" *ngIf="salvandoPagamento"></mat-spinner>
     <button mat-icon-button color="accent" (click)="confirmarSaida()" matTooltip="Voltar para a lista de cargo" aria-label="Botão de voltar para a página anterior"><mat-icon>arrow_back</mat-icon></button>
   </div>
-  <section mat-dialog-content>
-    <form action="" [formGroup]="formPagamento" (ngSubmit)="salvar()">
+  <section mat-dialog-content #principal>
+    <form action="" [formGroup]="formPagamento" (ngSubmit)="salvarAtualizacoes()">
       
       <mat-form-field appearance="fill">
         <mat-label>Valor</mat-label>
@@ -44,8 +23,18 @@
 
         </mat-select>
       </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Status de Pagamento</mat-label>
+        <mat-select formControlName="status" name="status">
+          <mat-option *ngFor="let st of status" [value]="st">
+            {{st}}
+          </mat-option>
+
+        </mat-select>
+      </mat-form-field>
       
       <button type="submit" [disabled]="formPagamento.invalid" mat-raised-button color="accent" id="salvar">Salvar</button>
     </form>
-  </section> -->
+  </section>
   

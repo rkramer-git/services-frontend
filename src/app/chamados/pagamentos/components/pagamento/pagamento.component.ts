@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ConfirmarSaidaComponent } from 'src/app/chamados/components/confirmar-saida/confirmar-saida.component';
+import { Pagamento } from '../../models/pagamento';
+import { PagamentoService } from '../../services/pagamento.service';
 
 @Component({
   selector: 'app-pagamento',
@@ -6,10 +15,91 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pagamento.component.css']
 })
 export class PagamentoComponent implements OnInit {
+  pagamento!: Pagamento
 
-  constructor() { }
+  formPagamento: FormGroup = this.fb.group({
+    valor:['',[Validators.required]],
+    formPagamento:['',[Validators.required]],
+    status:['',[Validators.required]]
+  })
+
+  desabilitar: boolean = true
+
+  status: string []=[
+    'LANCADO',
+    'QUITADO'
+  ]
+
+  formaPagamento:string[]=[
+    'PIX',
+    'Dinheiro',
+    'Cartão - Débito',
+    'Cartão - Crédito'
+  ]
+
+  constructor(
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private pagService: PagamentoService,
+    @Inject(MAT_DIALOG_DATA)public data: any
+  ) { }
 
   ngOnInit(): void {
+    
+    this.recuperarPagamento()
+  
+  }
+
+  recuperarPagamento():void{
+    this.pagamento = this.data
+    console.log(this.pagamento)
+        this.formPagamento.setValue({
+          valor:this.pagamento.valor,
+          formPagamento:this.pagamento.formPagamento,
+          status:this.pagamento.status
+        })
+        this.valorMudou()
+  }
+
+  valorMudou(){
+    this.formPagamento.valueChanges.subscribe(
+      (valores)=>{
+        this.desabilitar = this.formPagamento.invalid || !(valores.valor != this.pagamento.valor || valores.formPagamento != this.pagamento.formPagamento ||  valores.status != this.pagamento.status)
+      }
+    )
+  }
+
+  salvarAtualizacoes(){
+
+    const pag:Pagamento = {
+      idPagamento:this.pagamento.idPagamento,
+      valor:this.formPagamento.value.valor,
+      formPagamento:this.formPagamento.value.formPagamento,
+      status:this.formPagamento.value.status
+    }
+
+    this.pagService.putPagamento(pag).subscribe(
+      (pg:any)=>{
+        this.snackBar.open('Cargo atualizado com sucesso', 'Ok', {
+          duration: 3000
+        });
+        this.recuperarPagamento()
+        
+      }
+    )
+    
+  }
+
+  confirmarSaida(){
+    const dialog = this.dialog.open(ConfirmarSaidaComponent)
+    dialog.afterClosed().subscribe(
+      (boolean)=>{
+        if (boolean){
+        this.dialog.closeAll()
+        }
+      }
+    )
   }
 
 }
