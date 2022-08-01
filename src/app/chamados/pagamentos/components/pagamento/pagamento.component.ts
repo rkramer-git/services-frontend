@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -23,6 +23,7 @@ export class PagamentoComponent implements OnInit {
     status:['',[Validators.required]]
   })
 
+  naoEncontrado: boolean = false;
   desabilitar: boolean = true
 
   status: string []=[
@@ -42,24 +43,34 @@ export class PagamentoComponent implements OnInit {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private pagService: PagamentoService,
+    private dialogRef: MatDialogRef<PagamentoComponent>,
     @Inject(MAT_DIALOG_DATA)public data: any
   ) { }
 
   ngOnInit(): void {
     
     this.recuperarPagamento()
-  
+
   }
 
   recuperarPagamento():void{
     this.pagamento = this.data
-    console.log(this.pagamento)
+    this.pagService.getPagamentoById(this.pagamento.idPagamento).subscribe(
+      (pag)=>{
+        this.pagamento = pag
+
         this.formPagamento.setValue({
           valor:this.pagamento.valor,
           formPagamento:this.pagamento.formPagamento,
           status:this.pagamento.status
         })
         this.valorMudou()
+      },
+      (erro: HttpErrorResponse) => {
+        this.naoEncontrado = erro.status == 404;
+      }
+    )
+        
   }
 
   valorMudou(){
@@ -81,10 +92,14 @@ export class PagamentoComponent implements OnInit {
 
     this.pagService.putPagamento(pag).subscribe(
       (pg:any)=>{
-        this.snackBar.open('Cargo atualizado com sucesso', 'Ok', {
+        this.snackBar.open('Pagamento atualizado com sucesso', 'Ok', {
           duration: 3000
         });
+        this.dialogRef.close()
         this.recuperarPagamento()
+        window.location.reload()
+
+        
         
       }
     )

@@ -111,7 +111,6 @@ export class ListarChamadosComponent implements OnInit {
     referenciaDialog.afterClosed().subscribe(
       ()=>{
         this.recuperarChamados()
-        this.dialog.closeAll()
       }
     )
   }
