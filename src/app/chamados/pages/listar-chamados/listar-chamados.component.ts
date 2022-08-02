@@ -107,7 +107,8 @@ export class ListarChamadosComponent implements OnInit {
   }
 
   abrirEditarPagamento(pagamento:Pagamento):void{
-    const referenciaDialog = this.dialog.open(PagamentoComponent, {data:pagamento})
+    const referenciaDialog = this.dialog.open(PagamentoComponent, {data:pagamento,
+    disableClose:true})
     referenciaDialog.afterClosed().subscribe(
       ()=>{
         this.recuperarChamados()
