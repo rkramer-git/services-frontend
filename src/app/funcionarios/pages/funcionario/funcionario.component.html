@@ -8,15 +8,15 @@
       <img [src]="funcionario.foto || '/assets/no-profile.png'" mat-card-avatar>
       <mat-card-title>{{ funcionario.nome }}</mat-card-title>
       <mat-card-subtitle>{{ funcionario.email }}</mat-card-subtitle>
-      <button mat-icon-button color="primary" id="menu" [mat-menu-trigger-for]="menu">
+      <button mat-icon-button color="primary" id="menu" matTooltip="Menu" [mat-menu-trigger-for]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/funcionarios">
+        <button mat-menu-item routerLink="/funcionarios" matTooltip="Voltar">
           <mat-icon>keyboard_arrow_right</mat-icon>
           Voltar
         </button>
-        <button mat-menu-item (click)="deletar()">
+        <button mat-menu-item (click)="deletar()" matTooltip="Deletar Funcionário">
           <mat-icon>delete</mat-icon>
           Deletar funcionário
         </button>
@@ -47,7 +47,7 @@
 
         <input type="file" id="input-foto" #inputFoto (change)="recuperarFoto($event)" formControlName="foto">
 
-        <button type="button" mat-stroked-button color="primary" (click)="inputFoto.click()">
+        <button type="button" mat-stroked-button color="primary" (click)="inputFoto.click()" matTooltip="Atualizar Imagem">
           Atualizar imagem
         </button>
 
@@ -56,6 +56,7 @@
           mat-raised-button
           color="accent"
           id="salvar"
+          matTooltip="Salvar Atualizações"
           [disabled]="desabilitar"
         >Salvar atualizações</button>
       </form>

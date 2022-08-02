@@ -4,7 +4,7 @@
         <h2></h2>
     </aside>
     <main>
-        <button mat-mini-fab color="accent" id="add" (click)="abrirFormAddCargo()">
+        <button mat-mini-fab color="accent" matTooltip="Inserir Cargo" id="add" (click)="abrirFormAddCargo()">
             <mat-icon>add</mat-icon>
         </button>
         <div>
@@ -38,7 +38,7 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef>Excluir</th>
                 <td mat-cell *matCellDef="let c">
-                  <button mat-icon-button color="warn" (click)="deletarCargo(c)">
+                  <button mat-icon-button color="warn" matTooltip="Deletar Cargo" (click)="deletarCargo(c)">
                     <mat-icon>delete</mat-icon>
                   </button>
                 </td>

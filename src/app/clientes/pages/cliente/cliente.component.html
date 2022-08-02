@@ -20,16 +20,17 @@
         mat-icon-button
         color="primary"
         id="menu"
+        matTooltip="Menu"
         [mat-menu-trigger-for]="menu"
       >
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/clientes">
+        <button mat-menu-item routerLink="/clientes" matTooltip="Voltar">
           <mat-icon>keyboard_arrow_right</mat-icon>
           Voltar
         </button>
-        <button mat-menu-item (click)="deletar()">
+        <button mat-menu-item (click)="deletar()" matTooltip="Deletar Cliente">
           <mat-icon>delete</mat-icon>
           Deletar cliente
         </button>
@@ -72,6 +73,7 @@
           mat-raised-button
           color="accent"
           id="salvar"
+          matTooltip="Salvar Atualizações"
           [disabled]="desabilitar"
         >
           Salvar atualizações

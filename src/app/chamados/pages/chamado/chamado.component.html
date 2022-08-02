@@ -8,17 +8,17 @@
     <mat-card-header>
       
       <mat-card-title>Chamado {{chamado.idChamado}}:  {{chamado.titulo }}</mat-card-title>
-      <button mat-icon-button color="primary" id="menu" [mat-menu-trigger-for]="menu">
+      <button mat-icon-button color="primary" matTooltip="Menu" id="menu" [mat-menu-trigger-for]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
 
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/chamados">
+        <button mat-menu-item routerLink="/chamados" matTooltip="Voltar">
           <mat-icon>keyboard_arrow_right</mat-icon>
           Voltar
         </button>
 
-        <button mat-menu-item (click)="deletar()">
+        <button mat-menu-item matTooltip="Deletar Funcionário" (click)="deletar()">
           <mat-icon>delete</mat-icon>
           Deletar funcionário
         </button>
@@ -57,7 +57,7 @@
           </mat-select>
         </mat-form-field>
 
-        <button type="submit" mat-raised-button color="accent" id="salvar" [disabled]="desabilitar">Salvar
+        <button type="submit" mat-raised-button color="accent" id="salvar" [disabled]="desabilitar" matTooltip="Salvar Atualizações">Salvar
           atualizações</button>
         
           

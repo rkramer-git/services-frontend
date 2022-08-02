@@ -4,7 +4,7 @@
     <span class="separador"></span>      
     <h3>{{authService.email()}}</h3>
     <span class="separador"></span>
-    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+    <button mat-button [matMenuTriggerFor]="menu" matTooltip="Menu"><mat-icon>menu</mat-icon></button>
     <mat-menu #menu="matMenu">
       <a
         mat-menu-item
@@ -24,7 +24,7 @@
       ><mat-icon>event_note</mat-icon>Chamados</a>
     </mat-menu>
 
-    <button mat-icon-button (click)="logOut()">
+    <button mat-icon-button matTooltip="Logout" (click)="logOut()">
       <mat-icon>logout</mat-icon>
     </button>    
   </mat-toolbar-row>
