@@ -4,7 +4,7 @@
     <h2>Clientes</h2>
   </aside>
   <main>
-    <button mat-mini-fab color="accent" (click)="abrirFormCliente()" id="add">
+    <button mat-mini-fab color="accent" (click)="abrirFormCliente()" id="add" matTooltip="Inserir Cliente">
       <mat-icon>add</mat-icon>
     </button>
     <div>
@@ -50,6 +50,7 @@
                 <button
                   mat-icon-button
                   (click)="putEndereco(cl.enderecoCliente)"
+                  matTooltip="Editar Endereço"
                 >
                   <mat-icon id="btnEditarEndereco" class="mat-icon-formularios"
                     >edit</mat-icon
@@ -78,7 +79,7 @@
           </mat-accordion>
 
           <ng-template #adicionarEndereco>
-            <button mat-icon-button (click)="postEndereco(cl.idCliente)">
+            <button mat-icon-button matTooltip="Inserir Endereço" (click)="postEndereco(cl.idCliente)">
               <mat-icon>add</mat-icon>
             </button>
           </ng-template>
@@ -88,7 +89,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Excluir</th>
         <td mat-cell *matCellDef="let cl">
-          <button mat-icon-button color="warn" (click)="deletarCliente(cl)">
+          <button mat-icon-button color="warn" matTooltip="Deletar Cliente" (click)="deletarCliente(cl)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
