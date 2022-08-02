@@ -1,8 +1,32 @@
-mat-card, .loader {
+* {
+
+  background-color: #162f48;
+
+
+}
+
+mat-card,
+.loader {
   height: calc(100vh - (150px));
   position: sticky;
   top: 16px;
   left: 0;
+  height: fit-content;
+  background-color: #162f48;
+  border-color: #ffae00;
+  border-style: solid;
+  border-radius: 0;
+  border-width: 2px;
+}
+
+.mat-button.mat-primary,
+.mat-icon-button.mat-primary,
+.mat-stroked-button.mat-primary {
+  color: #ffffff;
+}
+
+.mat-input-element {
+  caret-color: #ffffff;
 }
 
 .loader {
@@ -28,8 +52,8 @@ form {
   border-radius: 50%;
   margin: 16px 0;
   align-self: center;
-  border: 7px solid white;
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),0px 8px 10px 1px rgba(0, 0, 0, 0.14),0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  border: 5px solid #ffae00;
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 #input-foto {

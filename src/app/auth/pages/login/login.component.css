@@ -1,14 +1,14 @@
 * {
-  
+
   color: white;
   border-color: white;
   outline-color: white;
   border-style: white;
-  
+
 }
 
 *:hover {
-  
+
   color: white;
   border-color: white;
   outline-color: white;
@@ -17,259 +17,248 @@
 }
 
 @media screen and (max-width: 1920px) {
-  /* Here are some changes*/
 
-  .grid-container {  
-  
-    /* display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 500px; */
-    
-    background-repeat: no-repeat;   
+
+  .grid-container {
+
+
+
+    background-repeat: no-repeat;
     height: 100vh;
-    width: 100vw;  
+    width: 100vw;
     background-image: url("../../../../assets/back.png");
   }
-  
+
   .image-container {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("../../../../assets/group5.png");
     height: 100%;
-    
+
   }
-  
+
   .form-container {
-    
+
     padding-top: 390px;
     padding-left: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-      
+
   }
-  
+
   .form-container form {
     display: flex;
     flex-direction: column;
-    
+
   }
-  
-  form re-captcha {  
+
+  form re-captcha {
     display: flex;
     margin-bottom: 5%;
     justify-content: center;
     align-items: center;
-  
-    } 
-  
+
+  }
+
 
 }
 
 
 @media screen and (max-width: 1600px) {
-  /* Here are some changes*/
 
-  .grid-container {  
-  
-    /* display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 500px; */
-    
-    background-repeat: no-repeat;   
+
+  .grid-container {
+
+
+    background-repeat: no-repeat;
     height: 100vh;
-    width: 100vw;  
+    width: 100vw;
     background-image: url("../../../../assets/back.png");
   }
-  
+
   .image-container {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("../../../../assets/group5.png");
     height: 100%;
-    
+
   }
-  
+
   .form-container {
-    
+
     padding-top: 300px;
     padding-left: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-      
+
   }
-  
+
   .form-container form {
     display: flex;
     flex-direction: column;
-    
+
   }
-  
-  form re-captcha {  
+
+  form re-captcha {
     display: flex;
     margin-bottom: 5%;
     justify-content: center;
     align-items: center;
-  
-    } 
-  
+
+  }
+
 
 }
 
 @media screen and (max-width: 1280px) {
-  /* Here are some changes*/
 
-  .grid-container {  
-  
-    /* display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 500px; */
-    
-    background-repeat: no-repeat;   
+
+  .grid-container {
+
+
+
+    background-repeat: no-repeat;
     height: 100vh;
-    width: 100vw;  
+    width: 100vw;
     background-image: url("../../../../assets/back.png");
   }
-  
+
   .image-container {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("../../../../assets/group5.png");
     height: 100%;
-    
+
   }
-  
+
   .form-container {
-    
+
     padding-top: 210px;
     padding-left: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-      
+
   }
-  
+
   .form-container form {
     display: flex;
     flex-direction: column;
-    
+
   }
-  
-  form re-captcha {  
+
+  form re-captcha {
     display: flex;
     margin-bottom: 5%;
     justify-content: center;
     align-items: center;
-  
-    } 
-  
+
+  }
+
 
 }
 
 @media screen and (max-width: 900px) {
-  /* Here are some changes*/
 
-  .grid-container {  
-  
-    /* display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 500px; */
-    
-    background-repeat: no-repeat;   
+
+  .grid-container {
+
+
+
+    background-repeat: no-repeat;
     height: 100vh;
-    width: 100vw;  
+    width: 100vw;
     background-image: url("../../../../assets/back.png");
   }
-  
+
   .image-container {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("../../../../assets/group5.png");
     height: 100%;
-    
+
   }
-  
+
   .form-container {
-    
+
     padding-top: 215px;
     padding-left: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-      
+
   }
-  
+
   .form-container form {
     display: flex;
     flex-direction: column;
-    
+
   }
-  
-  form re-captcha {  
+
+  form re-captcha {
     display: flex;
     margin-bottom: 5%;
     justify-content: center;
     align-items: center;
-  
-    } 
-  
+
+  }
+
 
 }
 
-/* Mobile device styles */
-@media screen and (max-width: 480px) {
-      /* Here are some changes*/
 
-      
-  .grid-container {  
-  
-    /* display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 500px; */
-    
-    background-repeat: no-repeat;   
+@media screen and (max-width: 480px) {
+
+
+
+  .grid-container {
+
+
+
+    background-repeat: no-repeat;
     height: 100vh;
-    width: 100vw;  
+    width: 100vw;
     background-image: url("../../../../assets/back.png");
   }
-  
+
   .image-container {
     background-repeat: no-repeat;
     background-position: center;
     background-image: url("../../../../assets/group6.png");
     height: 100%;
-    
+
   }
-  
+
   .form-container {
-    
+
     padding-top: 250px;
     padding-left: 1px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-      
+
   }
-  
+
   .form-container form {
     display: flex;
     flex-direction: column;
-    
+
   }
-  
-  form re-captcha {  
+
+  form re-captcha {
     display: flex;
     margin-bottom: 5%;
     justify-content: center;
     align-items: center;
-  
-    } 
-  
- 
+
+  }
+
+
 }
