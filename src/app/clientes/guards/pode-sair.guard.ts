@@ -7,6 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ConfirmarSaidaComponent } from 'src/app/chamados/components/confirmar-saida/confirmar-saida.component';
 import { ConfirmarSaidaCadastroComponent } from '../components/confirmar-saida-cadastro/confirmar-saida-cadastro.component';
 import { ClienteComponent } from '../pages/cliente/cliente.component';
 
@@ -30,7 +31,7 @@ export class PodeSairGuard implements CanDeactivate<unknown> {
     const email = component.formCliente.value.email;
 
     if (nome != component.cliente.nome || email != component.cliente.email) {
-      const dialogRef = this.dialog.open(ConfirmarSaidaCadastroComponent);
+      const dialogRef = this.dialog.open(ConfirmarSaidaComponent);
 
       const querSair = dialogRef.afterClosed();
 
